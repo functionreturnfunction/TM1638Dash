@@ -11,6 +11,17 @@ namespace SimDash
 
         public static readonly int[] LEDS = {1, 3, 7, 15, 31, 8223, 24607, 57375};
 
+        public struct DeviceMessages
+        {
+            public const string READY = "0000ready   ";
+        }
+
+        public struct ExceptionMessages
+        {
+            public const string NOT_YET_STARTED = "Not yet started!",
+                ALREADY_STARTED = "Already started!";
+        }
+
         #endregion
 
         #region Private Members
@@ -92,20 +103,20 @@ namespace SimDash
         {
             if (Started)
             {
-                throw new InvalidOperationException("Already started!");
+                throw new InvalidOperationException(ExceptionMessages.ALREADY_STARTED);
             }
 
             _device =
                 _container.GetInstance<IUsbDevice>(
                     new ExplicitArguments(new Dictionary<string, object> {{"portName", portName}}));
-            _device.SendString("0000ready   ");
+            _device.SendString(DeviceMessages.READY);
         }
 
         public void Stop()
         {
             if (!Started)
             {
-                throw new InvalidOperationException("Not started yet!");
+                throw new InvalidOperationException(ExceptionMessages.NOT_YET_STARTED);
             }
 
             _device.Dispose();
@@ -114,6 +125,11 @@ namespace SimDash
 
         public void DisplayStats(int maxRpms, int rpms, int gear, float speedKmh)
         {
+            if (!Started)
+            {
+                throw new InvalidOperationException(ExceptionMessages.NOT_YET_STARTED);
+            }
+
             _device.SendString(BuildCommandString(maxRpms, rpms, gear, speedKmh));
         }
 
