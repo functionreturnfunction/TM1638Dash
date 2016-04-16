@@ -9,7 +9,12 @@ namespace SimDash
     {
         #region Constants
 
-        public static readonly int[] LEDS = {1, 3, 7, 15, 31, 8223, 24607, 57375};
+        public static readonly int[] LEDS = {0, 1, 3, 7, 15, 31, 63, 127, 255};
+
+        public struct RpmScale
+        {
+            public const int BEGIN = 61, END = 90;
+        }
 
         public struct DeviceMessages
         {
@@ -73,7 +78,10 @@ namespace SimDash
 
         private int ScaleRPMs(int percentage)
         {
-            return 1 + (percentage - 61)/(90 - 61)*7;
+            var newScale = (double)7/(RpmScale.END - RpmScale.BEGIN);
+            var scale = (int)(1 + ((percentage - RpmScale.BEGIN)*newScale));
+
+            return scale > LEDS.Length ? LEDS.Length - 1 : scale;
         }
 
         private string DetermineLights(int maxRpms, int rpms)
@@ -85,14 +93,15 @@ namespace SimDash
 
             var percentage = rpms * 100.0 / maxRpms;
 
-            if (percentage < 60)
+            if (percentage < RpmScale.BEGIN)
             {
                 return "00";
             }
 
-            var scaled = ScaleRPMs((int)Math.Round(percentage));
+            var scaled = ScaleRPMs((int)percentage);
+            var ledHex = LEDS[scaled].ToString("X");
 
-            return LEDS[scaled - 1].ToString("X").PadLeft(2, '0');
+            return ledHex.PadLeft(2, '0');
         }
 
         #endregion
