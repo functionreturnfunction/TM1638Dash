@@ -16,6 +16,7 @@
 
 int lastLeds, lastDots;
 char lastDisp[9];
+bool blankLastTime;
 
 void setup() {
   Serial.begin(BAUD);
@@ -28,6 +29,7 @@ void readInputValues(char* leds, char* dots, char* disp) {
   Serial.readBytes(dots, 2);
   Serial.readBytes(disp, 8);
 
+  // null-terminating strings is a nice thing to do.
   leds[2] = NULL;
   dots[2] = NULL;
   disp[8] = NULL;
@@ -52,12 +54,11 @@ void displayInput() {
   Serial.print(disp);
   Serial.println("'");
 
-  if (ledBits != lastLeds) {
-    module.setLEDs(ledBits);
-  }
-  if (dotBits != lastDots || strcmp(disp, lastDisp) != 0) {
-    module.setDisplayToString(disp, dotBits);
-  }
+  module.setLEDs(ledBits == lastLeds && lastLeds == 0xFF && !blankLastTime ? 0 : ledBits);
+  blankLastTime = !blankLastTime;
+  module.setDisplayToString(disp, blankLastTime ? dotBits : 0);
+
+  module.setDisplayToString(disp, dotBits);
 
   lastLeds = ledBits;
   lastDots = dotBits;
