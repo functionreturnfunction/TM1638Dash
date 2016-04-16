@@ -71,7 +71,7 @@ namespace SimDash
             if (cmbComPort.SelectedItem != null)
             {
                 _device.Start(cmbComPort.SelectedItem.ToString());
-                btnConnectDevice.Visible = false;
+                cmbComPort.Enabled = btnRefreshCom.Enabled = btnConnectDevice.Visible = false;
                 btnDisconnectDevice.Visible = true;
             }
             else
@@ -84,7 +84,7 @@ namespace SimDash
         {
             _device.Stop();
             btnDisconnectDevice.Visible = false;
-            btnConnectDevice.Visible = true;
+            cmbComPort.Enabled = btnRefreshCom.Enabled = btnConnectDevice.Visible = true;
         }
 
         private void btnConnectGame_Click(object sender, EventArgs e)
