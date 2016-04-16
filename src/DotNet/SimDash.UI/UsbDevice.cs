@@ -25,12 +25,20 @@ namespace SimDash.UI
             _port.Open();
         }
 
+        public bool Connected => _port.IsOpen;
+
         #endregion
 
         #region Exposed Methods
 
         public void SendString(string value)
         {
+            if (value.Length != 12)
+            {
+                throw new ArgumentException(
+                    $"Cannot send string '{value}' because it's {(value.Length < 12 ? "less" : "greater")} than the expected message size.");
+            }
+
             _port.Write(value.ToCharArray(), 0, value.Length);
         }
 

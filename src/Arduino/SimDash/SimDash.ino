@@ -15,7 +15,7 @@
 #endif
 
 int lastLeds, lastDots;
-char lastDisp[9]
+char lastDisp[9];
 
 void setup() {
   Serial.begin(BAUD);

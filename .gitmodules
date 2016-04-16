@@ -1,0 +1,3 @@
+[submodule "src/DotNet/lib/assettocorsasharedmemory"]
+	path = src/DotNet/lib/assettocorsasharedmemory
+	url = https://github.com/mdjarv/assettocorsasharedmemory.git
