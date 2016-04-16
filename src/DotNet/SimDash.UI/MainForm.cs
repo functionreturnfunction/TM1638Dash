@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Windows.Forms;
-using AssettoCorsaSharedMemory;
 
-namespace SimDash.UI
+namespace SimDash
 {
     public partial class MainForm : Form
     {
@@ -48,8 +47,14 @@ namespace SimDash.UI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _device.Stop();
-            _game.Stop();
+            if (_device.Started)
+            {
+                _device.Stop();
+            }
+            if (_game.Started)
+            {
+                _game.Stop();
+            }
         }
 
         private void btnRefreshCom_Click(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 using System;
 using AssettoCorsaSharedMemory;
 
-namespace SimDash.UI
+namespace SimDash
 {
     public class AssettoCorsaHelper : IAssettoCorsaHelper
     {
@@ -10,7 +10,12 @@ namespace SimDash.UI
         private readonly AssettoCorsa _game;
         private readonly IUsbDeviceHelper _device;
         private int _currentMaxRpm;
-        private bool _started;
+
+        #endregion
+
+        #region Properties
+
+        public bool Started { get; private set; }
 
         #endregion
 
@@ -47,24 +52,24 @@ namespace SimDash.UI
 
         public void Stop()
         {
-            if (!_started)
+            if (!Started)
             {
                 throw new InvalidOperationException("Not yet started!");
             }
 
             _game.Stop();
-            _started = false;
+            Started = false;
         }
 
         public void Start()
         {
-            if (_started)
+            if (Started)
             {
                 throw new InvalidOperationException("Already started!");
             }
 
             _game.Start();
-            _started = true;
+            Started = true;
         }
 
         #endregion
@@ -72,6 +77,12 @@ namespace SimDash.UI
 
     public interface IAssettoCorsaHelper
     {
+        #region Abstract Properties
+
+        bool Started { get; }
+
+        #endregion
+
         #region Abstract Methods
 
         void Stop();

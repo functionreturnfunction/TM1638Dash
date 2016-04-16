@@ -1,4 +1,4 @@
-﻿namespace SimDash.UI
+﻿namespace SimDash
 {
     partial class MainForm
     {

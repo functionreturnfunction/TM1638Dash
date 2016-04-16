@@ -1,7 +1,7 @@
 using System;
 using System.IO.Ports;
 
-namespace SimDash.UI
+namespace SimDash
 {
     public class UsbDevice : IDisposable, IUsbDevice
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using StructureMap;
 using StructureMap.Pipeline;
 
-namespace SimDash.UI
+namespace SimDash
 {
     public class UsbDeviceHelper : IUsbDeviceHelper
     {
