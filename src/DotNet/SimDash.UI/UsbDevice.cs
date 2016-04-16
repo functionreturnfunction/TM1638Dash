@@ -3,7 +3,7 @@ using System.IO.Ports;
 
 namespace SimDash.UI
 {
-    public class UsbDevice : IDisposable
+    public class UsbDevice : IDisposable, IUsbDevice
     {
         #region Constants
 
@@ -17,6 +17,12 @@ namespace SimDash.UI
 
         #endregion
 
+        #region Properties
+
+        public bool Connected => _port.IsOpen;
+
+        #endregion
+
         #region Constructors
 
         public UsbDevice(string portName)
@@ -24,8 +30,6 @@ namespace SimDash.UI
             _port = new SerialPort(portName, BAUD, Parity.None, 8);
             _port.Open();
         }
-
-        public bool Connected => _port.IsOpen;
 
         #endregion
 
@@ -51,6 +55,22 @@ namespace SimDash.UI
             }
             _port.Dispose();
         }
+
+        #endregion
+    }
+
+    public interface IUsbDevice
+    {
+        #region Abstract Properties
+
+        bool Connected { get; }
+
+        #endregion
+
+        #region Abstract Methods
+
+        void Dispose();
+        void SendString(string value);
 
         #endregion
     }
