@@ -13,7 +13,7 @@ namespace SimDash
 
         public struct RpmScale
         {
-            public const int BEGIN = 61, END = 90;
+            public const int BEGIN = 76, END = 96;
         }
 
         public struct DeviceMessages
@@ -81,7 +81,7 @@ namespace SimDash
             var newScale = (double)7/(RpmScale.END - RpmScale.BEGIN);
             var scale = (int)(1 + ((percentage - RpmScale.BEGIN)*newScale));
 
-            return scale > LEDS.Length ? LEDS.Length - 1 : scale;
+            return scale >= LEDS.Length ? LEDS.Length - 1 : scale;
         }
 
         private string DetermineLights(int maxRpms, int rpms)

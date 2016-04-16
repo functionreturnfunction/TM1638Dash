@@ -83,30 +83,30 @@ namespace SimDash.Tests
         {
             StartTarget();
 
-            DisplayAndVerify(100, 60, 0, 0, $"{GetLEDString(0)}00r      0");
+            DisplayAndVerify(100, 75, 0, 0, $"{GetLEDString(0)}00r      0");
 
-            DisplayAndVerify(100, 61, 0, 0, $"{GetLEDString(1)}00r      0");
-            DisplayAndVerify(100, 65, 0, 0, $"{GetLEDString(1)}00r      0");
+            DisplayAndVerify(100, 76, 0, 0, $"{GetLEDString(1)}00r      0");
+            DisplayAndVerify(100, 78, 0, 0, $"{GetLEDString(1)}00r      0");
 
-            DisplayAndVerify(100, 66, 0, 0, $"{GetLEDString(2)}00r      0");
-            DisplayAndVerify(100, 69, 0, 0, $"{GetLEDString(2)}00r      0");
+            DisplayAndVerify(100, 79, 0, 0, $"{GetLEDString(2)}00r      0");
+            DisplayAndVerify(100, 81, 0, 0, $"{GetLEDString(2)}00r      0");
 
-            DisplayAndVerify(100, 70, 0, 0, $"{GetLEDString(3)}00r      0");
-            DisplayAndVerify(100, 73, 0, 0, $"{GetLEDString(3)}00r      0");
+            DisplayAndVerify(100, 82, 0, 0, $"{GetLEDString(3)}00r      0");
+            DisplayAndVerify(100, 84, 0, 0, $"{GetLEDString(3)}00r      0");
 
-            DisplayAndVerify(100, 74, 0, 0, $"{GetLEDString(4)}00r      0");
-            DisplayAndVerify(100, 77, 0, 0, $"{GetLEDString(4)}00r      0");
+            DisplayAndVerify(100, 85, 0, 0, $"{GetLEDString(4)}00r      0");
+            DisplayAndVerify(100, 87, 0, 0, $"{GetLEDString(4)}00r      0");
 
-            DisplayAndVerify(100, 78, 0, 0, $"{GetLEDString(5)}00r      0");
-            DisplayAndVerify(100, 81, 0, 0, $"{GetLEDString(5)}00r      0");
+            DisplayAndVerify(100, 88, 0, 0, $"{GetLEDString(5)}00r      0");
+            DisplayAndVerify(100, 90, 0, 0, $"{GetLEDString(5)}00r      0");
 
-            DisplayAndVerify(100, 82, 0, 0, $"{GetLEDString(6)}00r      0");
-            DisplayAndVerify(100, 85, 0, 0, $"{GetLEDString(6)}00r      0");
+            DisplayAndVerify(100, 91, 0, 0, $"{GetLEDString(6)}00r      0");
+            DisplayAndVerify(100, 93, 0, 0, $"{GetLEDString(6)}00r      0");
 
-            DisplayAndVerify(100, 86, 0, 0, $"{GetLEDString(7)}00r      0");
-            DisplayAndVerify(100, 89, 0, 0, $"{GetLEDString(7)}00r      0");
+            DisplayAndVerify(100, 94, 0, 0, $"{GetLEDString(7)}00r      0");
+            DisplayAndVerify(100, 95, 0, 0, $"{GetLEDString(7)}00r      0");
 
-            DisplayAndVerify(100, 90, 0, 0, $"{GetLEDString(8)}00r      0");
+            DisplayAndVerify(100, 96, 0, 0, $"{GetLEDString(8)}00r      0");
             DisplayAndVerify(100, 100, 0, 0, $"{GetLEDString(8)}00r      0");
 
             _device.VerifyAll();
