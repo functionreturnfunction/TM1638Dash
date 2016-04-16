@@ -45,7 +45,7 @@ namespace SimDash
             if (_device.Started)
             {
                 _device.DisplayStats(_style, _currentMaxRpm, e.Physics.Rpms, e.Physics.Gear,
-                    _imperial ? (int)Math.Round(e.Physics.SpeedKmh*0.621371192) : e.Physics.SpeedKmh);
+                    (int)Math.Round(_imperial ? e.Physics.SpeedKmh*0.621371192 : e.Physics.SpeedKmh));
             }
         }
 
