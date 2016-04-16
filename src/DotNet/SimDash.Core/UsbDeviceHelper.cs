@@ -9,11 +9,19 @@ namespace SimDash
     {
         #region Constants
 
-        public static readonly int[] LEDS = {0, 1, 3, 7, 15, 31, 63, 127, 255};
+        public static readonly int[] LEFT_LEDS =   {0,   1,   3,   7,  15,  31,  63, 127, 255};
+        public static readonly int[] RIGHT_LEDS =  {0,  64, 192, 224, 240, 248, 252, 254, 255};
+        public static readonly int[] CENTER_LEDS = {0, 129, 129, 195, 195, 195, 231, 231, 255};
+
+        public static readonly Dictionary<LEDStyle, int[]> LED_STYLES = new Dictionary<LEDStyle, int[]> {
+            {LEDStyle.Left, LEFT_LEDS},
+            {LEDStyle.Right, RIGHT_LEDS},
+            {LEDStyle.Center, CENTER_LEDS}
+        };
 
         public struct RpmScale
         {
-            public const int BEGIN = 76, END = 95;
+            public const int BEGIN = 75, END = 95;
         }
 
         public struct DeviceMessages
@@ -53,9 +61,9 @@ namespace SimDash
 
         #region Private Methods
 
-        private string BuildCommandString(int maxRpms, int rpms, int gear, float speedKmh)
+        private string BuildCommandString(LEDStyle style, int maxRpms, int rpms, int gear, float speedKmh)
         {
-            return DetermineLights(maxRpms, rpms) + "00" + FixGear(gear) + FixSpeed(speedKmh);
+            return DetermineLights(style, maxRpms, rpms) + "00" + FixGear(gear) + FixSpeed(speedKmh);
         }
 
         private static string FixGear(int gear)
@@ -81,10 +89,10 @@ namespace SimDash
             var newScale = (double)7/(RpmScale.END - RpmScale.BEGIN);
             var scale = (int)(1 + ((percentage - RpmScale.BEGIN)*newScale));
 
-            return scale >= LEDS.Length ? LEDS.Length - 1 : scale;
+            return scale >= LEFT_LEDS.Length ? LEFT_LEDS.Length - 1 : scale;
         }
 
-        private string DetermineLights(int maxRpms, int rpms)
+        private string DetermineLights(LEDStyle style, int maxRpms, int rpms)
         {
             if (rpms == 0 || maxRpms == 0)
             {
@@ -99,7 +107,7 @@ namespace SimDash
             }
 
             var scaled = ScaleRPMs((int)percentage);
-            var ledHex = LEDS[scaled].ToString("X");
+            var ledHex = LED_STYLES[style][scaled].ToString("X");
 
             return ledHex.PadLeft(2, '0');
         }
@@ -132,14 +140,14 @@ namespace SimDash
             _device = null;
         }
 
-        public void DisplayStats(int maxRpms, int rpms, int gear, float speedKmh)
+        public void DisplayStats(LEDStyle style, int maxRpms, int rpms, int gear, float speedKmh)
         {
             if (!Started)
             {
                 throw new InvalidOperationException(ExceptionMessages.NOT_YET_STARTED);
             }
 
-            _device.SendString(BuildCommandString(maxRpms, rpms, gear, speedKmh));
+            _device.SendString(BuildCommandString(style, maxRpms, rpms, gear, speedKmh));
         }
 
         #endregion
@@ -157,7 +165,7 @@ namespace SimDash
 
         void Start(string portName);
         void Stop();
-        void DisplayStats(int maxRpms, int rpms, int gear, float speedKmh);
+        void DisplayStats(LEDStyle style, int maxRpms, int rpms, int gear, float speedKmh);
 
         #endregion
     }

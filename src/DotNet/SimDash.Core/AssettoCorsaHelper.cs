@@ -10,6 +10,8 @@ namespace SimDash
         private readonly AssettoCorsa _game;
         private readonly IUsbDeviceHelper _device;
         private int _currentMaxRpm;
+        private bool _imperial;
+        private LEDStyle _style;
 
         #endregion
 
@@ -42,7 +44,8 @@ namespace SimDash
         {
             if (_device.Started)
             {
-                _device.DisplayStats(_currentMaxRpm, e.Physics.Rpms, e.Physics.Gear, e.Physics.SpeedKmh);
+                _device.DisplayStats(_style, _currentMaxRpm, e.Physics.Rpms, e.Physics.Gear,
+                    _imperial ? (int)Math.Round(e.Physics.SpeedKmh*0.621371192) : e.Physics.SpeedKmh);
             }
         }
 
@@ -61,12 +64,15 @@ namespace SimDash
             Started = false;
         }
 
-        public void Start()
+        public void Start(bool imperial, LEDStyle style)
         {
             if (Started)
             {
                 throw new InvalidOperationException("Already started!");
             }
+
+            _imperial = imperial;
+            _style = style;
 
             _game.Start();
             Started = true;
@@ -86,7 +92,7 @@ namespace SimDash
         #region Abstract Methods
 
         void Stop();
-        void Start();
+        void Start(bool imperial, LEDStyle style);
 
         #endregion
     }

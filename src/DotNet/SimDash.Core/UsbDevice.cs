@@ -74,4 +74,9 @@ namespace SimDash
 
         #endregion
     }
+
+    public enum LEDStyle
+    {
+        Center, Left, Right
+    }
 }

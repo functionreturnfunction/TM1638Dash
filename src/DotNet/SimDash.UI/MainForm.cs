@@ -6,6 +6,8 @@ namespace SimDash
 {
     public partial class MainForm : Form
     {
+        public const LEDStyle DEFAULT_LED_STYLE = LEDStyle.Left;
+
         #region Private Members
 
         private readonly IUsbDeviceHelper _device;
@@ -43,6 +45,8 @@ namespace SimDash
         private void MainForm_Load(object sender, EventArgs e)
         {
             ListComPorts();
+            cmbStyle.DataSource = Enum.GetValues(typeof(LEDStyle));
+            cmbStyle.SelectedItem = DEFAULT_LED_STYLE;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -89,8 +93,8 @@ namespace SimDash
 
         private void btnConnectGame_Click(object sender, EventArgs e)
         {
-            _game.Start();
-            btnConnectGame.Visible = false;
+            _game.Start(rdoImperial.Checked, (LEDStyle)Enum.Parse(typeof(LEDStyle), cmbStyle.SelectedValue.ToString()));
+            rdoImperial.Enabled = rdoMetric.Enabled = cmbStyle.Enabled = btnConnectGame.Visible = false;
             btnDisconnectGame.Visible = true;
         }
 
@@ -98,7 +102,7 @@ namespace SimDash
         {
             _game.Stop();
             btnDisconnectGame.Visible = false;
-            btnConnectGame.Visible = true;
+            rdoImperial.Enabled = rdoMetric.Enabled = cmbStyle.Enabled = btnConnectGame.Visible = true;
         }
 
         #endregion

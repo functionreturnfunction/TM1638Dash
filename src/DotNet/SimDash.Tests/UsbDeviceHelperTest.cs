@@ -55,14 +55,19 @@ namespace SimDash.Tests
 
         private string GetLEDString(int idx)
         {
-            return UsbDeviceHelper.LEDS[idx].ToString("X").PadLeft(2, '0');
+            return UsbDeviceHelper.LEFT_LEDS[idx].ToString("X").PadLeft(2, '0');
         }
 
         private void DisplayAndVerify(int maxRpms, int rpms, int gear, int kmh, string expected)
         {
+            DisplayAndVerify(LEDStyle.Left, maxRpms, rpms, gear, kmh, expected);
+        }
+
+        private void DisplayAndVerify(LEDStyle style, int maxRpms, int rpms, int gear, int kmh, string expected)
+        {
             _device.Setup(x => x.SendString(expected));
 
-            _target.DisplayStats(maxRpms, rpms, gear, kmh);
+            _target.DisplayStats(style, maxRpms, rpms, gear, kmh);
 
         }
 
@@ -83,18 +88,18 @@ namespace SimDash.Tests
         {
             StartTarget();
 
-            DisplayAndVerify(100, 75, 0, 0, $"{GetLEDString(0)}00r      0");
+            DisplayAndVerify(100, 74, 0, 0, $"{GetLEDString(0)}00r      0");
 
-            DisplayAndVerify(100, 76, 0, 0, $"{GetLEDString(1)}00r      0");
-            DisplayAndVerify(100, 78, 0, 0, $"{GetLEDString(1)}00r      0");
+            DisplayAndVerify(100, 75, 0, 0, $"{GetLEDString(1)}00r      0");
+            DisplayAndVerify(100, 77, 0, 0, $"{GetLEDString(1)}00r      0");
 
-            DisplayAndVerify(100, 79, 0, 0, $"{GetLEDString(2)}00r      0");
-            DisplayAndVerify(100, 81, 0, 0, $"{GetLEDString(2)}00r      0");
+            DisplayAndVerify(100, 78, 0, 0, $"{GetLEDString(2)}00r      0");
+            DisplayAndVerify(100, 80, 0, 0, $"{GetLEDString(2)}00r      0");
 
-            DisplayAndVerify(100, 82, 0, 0, $"{GetLEDString(3)}00r      0");
-            DisplayAndVerify(100, 84, 0, 0, $"{GetLEDString(3)}00r      0");
+            DisplayAndVerify(100, 81, 0, 0, $"{GetLEDString(3)}00r      0");
+            DisplayAndVerify(100, 83, 0, 0, $"{GetLEDString(3)}00r      0");
 
-            DisplayAndVerify(100, 85, 0, 0, $"{GetLEDString(4)}00r      0");
+            DisplayAndVerify(100, 84, 0, 0, $"{GetLEDString(4)}00r      0");
             DisplayAndVerify(100, 86, 0, 0, $"{GetLEDString(4)}00r      0");
 
             DisplayAndVerify(100, 87, 0, 0, $"{GetLEDString(5)}00r      0");
@@ -137,7 +142,7 @@ namespace SimDash.Tests
 
             try
             {
-                _target.DisplayStats(1, 0, 0, 0);
+                _target.DisplayStats(LEDStyle.Left, 1, 0, 0, 0);
             }
             catch (InvalidOperationException e) when (e.Message == UsbDeviceHelper.ExceptionMessages.NOT_YET_STARTED)
             {

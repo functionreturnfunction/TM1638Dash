@@ -36,6 +36,10 @@
             this.tbLog = new System.Windows.Forms.RichTextBox();
             this.btnDisconnectDevice = new System.Windows.Forms.Button();
             this.btnDisconnectGame = new System.Windows.Forms.Button();
+            this.rdoImperial = new System.Windows.Forms.RadioButton();
+            this.rdoMetric = new System.Windows.Forms.RadioButton();
+            this.lblStyle = new System.Windows.Forms.Label();
+            this.cmbStyle = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cmbComPort
@@ -67,7 +71,7 @@
             // 
             // btnConnectDevice
             // 
-            this.btnConnectDevice.Location = new System.Drawing.Point(12, 40);
+            this.btnConnectDevice.Location = new System.Drawing.Point(12, 62);
             this.btnConnectDevice.Name = "btnConnectDevice";
             this.btnConnectDevice.Size = new System.Drawing.Size(127, 23);
             this.btnConnectDevice.TabIndex = 3;
@@ -77,7 +81,7 @@
             // 
             // btnConnectGame
             // 
-            this.btnConnectGame.Location = new System.Drawing.Point(145, 40);
+            this.btnConnectGame.Location = new System.Drawing.Point(145, 62);
             this.btnConnectGame.Name = "btnConnectGame";
             this.btnConnectGame.Size = new System.Drawing.Size(127, 23);
             this.btnConnectGame.TabIndex = 4;
@@ -87,7 +91,7 @@
             // 
             // tbLog
             // 
-            this.tbLog.Location = new System.Drawing.Point(12, 69);
+            this.tbLog.Location = new System.Drawing.Point(12, 91);
             this.tbLog.Name = "tbLog";
             this.tbLog.ReadOnly = true;
             this.tbLog.Size = new System.Drawing.Size(260, 180);
@@ -96,7 +100,7 @@
             // 
             // btnDisconnectDevice
             // 
-            this.btnDisconnectDevice.Location = new System.Drawing.Point(12, 40);
+            this.btnDisconnectDevice.Location = new System.Drawing.Point(12, 62);
             this.btnDisconnectDevice.Name = "btnDisconnectDevice";
             this.btnDisconnectDevice.Size = new System.Drawing.Size(127, 23);
             this.btnDisconnectDevice.TabIndex = 6;
@@ -107,7 +111,7 @@
             // 
             // btnDisconnectGame
             // 
-            this.btnDisconnectGame.Location = new System.Drawing.Point(145, 40);
+            this.btnDisconnectGame.Location = new System.Drawing.Point(145, 62);
             this.btnDisconnectGame.Name = "btnDisconnectGame";
             this.btnDisconnectGame.Size = new System.Drawing.Size(127, 23);
             this.btnDisconnectGame.TabIndex = 7;
@@ -116,11 +120,54 @@
             this.btnDisconnectGame.Visible = false;
             this.btnDisconnectGame.Click += new System.EventHandler(this.btnDisconnectGame_Click);
             // 
+            // rdoImperial
+            // 
+            this.rdoImperial.AutoSize = true;
+            this.rdoImperial.Checked = true;
+            this.rdoImperial.Location = new System.Drawing.Point(15, 39);
+            this.rdoImperial.Name = "rdoImperial";
+            this.rdoImperial.Size = new System.Drawing.Size(61, 17);
+            this.rdoImperial.TabIndex = 8;
+            this.rdoImperial.TabStop = true;
+            this.rdoImperial.Text = "Imperial";
+            this.rdoImperial.UseVisualStyleBackColor = true;
+            // 
+            // rdoMetric
+            // 
+            this.rdoMetric.AutoSize = true;
+            this.rdoMetric.Location = new System.Drawing.Point(82, 39);
+            this.rdoMetric.Name = "rdoMetric";
+            this.rdoMetric.Size = new System.Drawing.Size(54, 17);
+            this.rdoMetric.TabIndex = 9;
+            this.rdoMetric.Text = "Metric";
+            this.rdoMetric.UseVisualStyleBackColor = true;
+            // 
+            // lblStyle
+            // 
+            this.lblStyle.AutoSize = true;
+            this.lblStyle.Location = new System.Drawing.Point(142, 41);
+            this.lblStyle.Name = "lblStyle";
+            this.lblStyle.Size = new System.Drawing.Size(33, 13);
+            this.lblStyle.TabIndex = 10;
+            this.lblStyle.Text = "Style:";
+            // 
+            // cmbStyle
+            // 
+            this.cmbStyle.FormattingEnabled = true;
+            this.cmbStyle.Location = new System.Drawing.Point(181, 38);
+            this.cmbStyle.Name = "cmbStyle";
+            this.cmbStyle.Size = new System.Drawing.Size(91, 21);
+            this.cmbStyle.TabIndex = 11;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 281);
+            this.Controls.Add(this.cmbStyle);
+            this.Controls.Add(this.lblStyle);
+            this.Controls.Add(this.rdoMetric);
+            this.Controls.Add(this.rdoImperial);
             this.Controls.Add(this.btnDisconnectGame);
             this.Controls.Add(this.btnDisconnectDevice);
             this.Controls.Add(this.tbLog);
@@ -148,6 +195,10 @@
         private System.Windows.Forms.RichTextBox tbLog;
         private System.Windows.Forms.Button btnDisconnectDevice;
         private System.Windows.Forms.Button btnDisconnectGame;
+        private System.Windows.Forms.RadioButton rdoImperial;
+        private System.Windows.Forms.RadioButton rdoMetric;
+        private System.Windows.Forms.Label lblStyle;
+        private System.Windows.Forms.ComboBox cmbStyle;
     }
 }
 
