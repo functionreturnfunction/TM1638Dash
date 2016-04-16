@@ -13,7 +13,7 @@ namespace SimDash
 
         public struct RpmScale
         {
-            public const int BEGIN = 76, END = 96;
+            public const int BEGIN = 76, END = 95;
         }
 
         public struct DeviceMessages
