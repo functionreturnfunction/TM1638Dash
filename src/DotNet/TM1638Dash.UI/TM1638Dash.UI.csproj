@@ -7,8 +7,8 @@
     <ProjectGuid>{1566C4DE-E3C4-4E64-98C7-C9ACC9F92A9F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimDash</RootNamespace>
-    <AssemblyName>SimDash.UI</AssemblyName>
+    <RootNamespace>TM1638Dash</RootNamespace>
+    <AssemblyName>TM1638Dash.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

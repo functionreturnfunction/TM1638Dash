@@ -6,8 +6,8 @@
     <ProjectGuid>{8B2EB980-ABAB-4B6F-93DB-1A88F30BFC7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimDash.Tests</RootNamespace>
-    <AssemblyName>SimDash.Tests</AssemblyName>
+    <RootNamespace>TM1638Dash.Tests</RootNamespace>
+    <AssemblyName>TM1638Dash.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

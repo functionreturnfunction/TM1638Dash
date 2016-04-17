@@ -7,8 +7,8 @@
     <ProjectGuid>{547D269C-83A5-47C8-8CE6-0D31C35450B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimDash</RootNamespace>
-    <AssemblyName>SimDash.Core</AssemblyName>
+    <RootNamespace>TM1638Dash</RootNamespace>
+    <AssemblyName>TM1638Dash.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
