@@ -1,6 +1,6 @@
 using StructureMap;
 
-namespace SimDash
+namespace TM1638Dash
 {
     public static class IocHelper
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SimDash
+namespace TM1638Dash
 {
     static class Program
     {

@@ -4,7 +4,7 @@ using Moq;
 using StructureMap;
 using StructureMap.Pipeline;
 
-namespace SimDash.Tests
+namespace TM1638Dash.Tests
 {
     [TestClass]
     public class UsbDeviceHelperTest
@@ -72,16 +72,6 @@ namespace SimDash.Tests
         }
 
         #endregion
-
-        [TestMethod]
-        public void TestDisplayStatsConvertsKmhToMph()
-        {
-            var kmh = 120;
-            var expected = 75;
-            StartTarget();
-
-            DisplayAndVerify(1, 0, 0, kmh, $"0000r     {expected}");
-        }
 
         [TestMethod]
         public void TestDisplayStatsSendsCorrectLightString()

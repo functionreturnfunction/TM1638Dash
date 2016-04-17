@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SimDash.UI")]
+[assembly: AssemblyTitle("TM1638Dash.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SimDash.UI")]
+[assembly: AssemblyProduct("TM1638Dash.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1566c4de-e3c4-4e64-98c7-c9acc9f92a9f")]
+[assembly: Guid("8b2eb980-abab-4b6f-93db-1a88f30bfc7a")]
 
 // Version information for an assembly consists of the following four values:
 //

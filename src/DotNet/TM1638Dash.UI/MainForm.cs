@@ -2,7 +2,7 @@
 using System.IO.Ports;
 using System.Windows.Forms;
 
-namespace SimDash
+namespace TM1638Dash
 {
     public partial class MainForm : Form
     {

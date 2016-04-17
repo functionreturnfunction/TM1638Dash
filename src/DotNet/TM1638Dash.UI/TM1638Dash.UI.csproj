@@ -90,7 +90,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimDash.Core\SimDash.Core.csproj">
+    <ProjectReference Include="..\TM1638Dash.Core\TM1638Dash.Core.csproj">
       <Project>{547d269c-83a5-47c8-8ce6-0d31c35450b3}</Project>
       <Name>SimDash.Core</Name>
     </ProjectReference>

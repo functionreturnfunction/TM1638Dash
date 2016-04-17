@@ -1,7 +1,7 @@
 using System;
 using AssettoCorsaSharedMemory;
 
-namespace SimDash
+namespace TM1638Dash
 {
     public class AssettoCorsaHelper : IAssettoCorsaHelper
     {

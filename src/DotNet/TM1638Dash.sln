@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimDash.UI", "SimDash.UI\SimDash.UI.csproj", "{1566C4DE-E3C4-4E64-98C7-C9ACC9F92A9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM1638Dash.UI", "TM1638Dash.UI\TM1638Dash.UI.csproj", "{1566C4DE-E3C4-4E64-98C7-C9ACC9F92A9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssettoCorsaSharedMemory", "lib\assettocorsasharedmemory\AssettoCorsaSharedMemory.csproj", "{020AF3ED-0A4C-4215-9B1D-1D41DD26F8BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimDash.Core", "SimDash.Core\SimDash.Core.csproj", "{547D269C-83A5-47C8-8CE6-0D31C35450B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM1638Dash.Core", "TM1638Dash.Core\TM1638Dash.Core.csproj", "{547D269C-83A5-47C8-8CE6-0D31C35450B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimDash.Tests", "SimDash.Tests\SimDash.Tests.csproj", "{8B2EB980-ABAB-4B6F-93DB-1A88F30BFC7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM1638Dash.Tests", "TM1638Dash.Tests\TM1638Dash.Tests.csproj", "{8B2EB980-ABAB-4B6F-93DB-1A88F30BFC7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

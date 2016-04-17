@@ -1,4 +1,4 @@
-﻿namespace SimDash
+﻿namespace TM1638Dash
 {
     partial class MainForm
     {
@@ -177,7 +177,7 @@
             this.Controls.Add(this.lblComPort);
             this.Controls.Add(this.cmbComPort);
             this.Name = "MainForm";
-            this.Text = "SimDash";
+            this.Text = "TM1638Dash";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
