@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AssettoCorsaHelper.cs" />
     <Compile Include="IocHelper.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsbDevice.cs" />
     <Compile Include="UsbDeviceHelper.cs" />

@@ -1,3 +1,4 @@
+using System;
 using StructureMap;
 
 namespace TM1638Dash
@@ -6,20 +7,25 @@ namespace TM1638Dash
     {
         #region Private Methods
 
-        private static void ConfigureContainer(ConfigurationExpression c)
+        private static Action<ConfigurationExpression> GetConfigurationFn(Action<ConfigurationExpression> configure)
         {
-            c.For<IAssettoCorsaHelper>().Use<AssettoCorsaHelper>();
-            c.For<IUsbDeviceHelper>().Singleton().Use<UsbDeviceHelper>();
-            c.For<IUsbDevice>().Use<UsbDevice>();
+            return c => {
+                c.For<IAssettoCorsaHelper>().Use<AssettoCorsaHelper>();
+                c.For<IUsbDeviceHelper>().Singleton().Use<UsbDeviceHelper>();
+                c.For<IUsbDevice>().Use<UsbDevice>();
+                configure(c);
+            };
         }
 
         #endregion
 
         #region Exposed Methods
 
-        public static IContainer GetContainer()
+        public static IContainer GetContainer(Action<ConfigurationExpression> configure = null)
         {
-            return new Container(ConfigureContainer);
+            configure = configure ?? (_ => { });
+
+            return new Container(GetConfigurationFn(configure));
         }
 
         #endregion

@@ -7,13 +7,14 @@ namespace TM1638Dash
     {
         #region Constants
 
-        public const int BAUD = 9600;
+        public const int BAUD = 19200;
 
         #endregion
 
         #region Private Members
 
         private readonly SerialPort _port;
+        private readonly ILog _log;
 
         #endregion
 
@@ -25,9 +26,11 @@ namespace TM1638Dash
 
         #region Constructors
 
-        public UsbDevice(string portName)
+        public UsbDevice(string portName, ILog log)
         {
             _port = new SerialPort(portName, BAUD, Parity.None, 8);
+            _log = log;
+            _log.Info($"Opening serial connection to port '{portName}'");
             _port.Open();
         }
 
@@ -43,6 +46,7 @@ namespace TM1638Dash
                     $"Cannot send string '{value}' because it's {(value.Length < 12 ? "less" : "greater")} than the expected message size.");
             }
 
+            _log.Info($"Writing command string '{value}'");
             _port.Write(value.ToCharArray(), 0, value.Length);
         }
 

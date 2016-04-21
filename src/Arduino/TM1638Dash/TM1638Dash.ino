@@ -1,9 +1,9 @@
 #include <TM1638.h>
 
-#define DATA_PIN 8
-#define CLOCK_PIN 9
 #define STROBE_PIN 7
-#define BAUD 9600
+#define DATA_PIN   8
+#define CLOCK_PIN  9
+#define BAUD 19200
 
 // 2 for the leds, 2 for the dots, 8 for the digits
 #define TX_LENGTH 12
@@ -17,12 +17,6 @@
 int lastLeds, lastDots;
 char lastDisp[9];
 bool blankLastTime;
-
-void setup() {
-  Serial.begin(BAUD);
-  module.setDisplayToString("hEy j");
-  delay(2000);
-}
 
 void readInputValues(char* leds, char* dots, char* disp) {
   Serial.readBytes(leds, 2);
@@ -75,7 +69,16 @@ void handleNoInput() {
 //  module.clearDisplay();
 }
 
+void setup() {
+  Serial.begin(BAUD);
+  module.setDisplayToString("hEy j");
+}
+
 void loop() {
+  if (!Serial) {
+    while (!Serial) {}
+  }
+  
   if (Serial.available() > 0) {
     handleInput();
   } else {

@@ -33,13 +33,13 @@
             this.btnRefreshCom = new System.Windows.Forms.Button();
             this.btnConnectDevice = new System.Windows.Forms.Button();
             this.btnConnectGame = new System.Windows.Forms.Button();
-            this.tbLog = new System.Windows.Forms.RichTextBox();
             this.btnDisconnectDevice = new System.Windows.Forms.Button();
             this.btnDisconnectGame = new System.Windows.Forms.Button();
             this.rdoImperial = new System.Windows.Forms.RadioButton();
             this.rdoMetric = new System.Windows.Forms.RadioButton();
             this.lblStyle = new System.Windows.Forms.Label();
             this.cmbStyle = new System.Windows.Forms.ComboBox();
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // cmbComPort
@@ -88,15 +88,6 @@
             this.btnConnectGame.Text = "Connect Game";
             this.btnConnectGame.UseVisualStyleBackColor = true;
             this.btnConnectGame.Click += new System.EventHandler(this.btnConnectGame_Click);
-            // 
-            // tbLog
-            // 
-            this.tbLog.Location = new System.Drawing.Point(12, 91);
-            this.tbLog.Name = "tbLog";
-            this.tbLog.ReadOnly = true;
-            this.tbLog.Size = new System.Drawing.Size(260, 180);
-            this.tbLog.TabIndex = 5;
-            this.tbLog.Text = "";
             // 
             // btnDisconnectDevice
             // 
@@ -159,18 +150,26 @@
             this.cmbStyle.Size = new System.Drawing.Size(91, 21);
             this.cmbStyle.TabIndex = 11;
             // 
+            // lbLog
+            // 
+            this.lbLog.FormattingEnabled = true;
+            this.lbLog.Location = new System.Drawing.Point(12, 104);
+            this.lbLog.Name = "lbLog";
+            this.lbLog.Size = new System.Drawing.Size(260, 160);
+            this.lbLog.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 281);
+            this.Controls.Add(this.lbLog);
             this.Controls.Add(this.cmbStyle);
             this.Controls.Add(this.lblStyle);
             this.Controls.Add(this.rdoMetric);
             this.Controls.Add(this.rdoImperial);
             this.Controls.Add(this.btnDisconnectGame);
             this.Controls.Add(this.btnDisconnectDevice);
-            this.Controls.Add(this.tbLog);
             this.Controls.Add(this.btnConnectGame);
             this.Controls.Add(this.btnConnectDevice);
             this.Controls.Add(this.btnRefreshCom);
@@ -192,13 +191,13 @@
         private System.Windows.Forms.Button btnRefreshCom;
         private System.Windows.Forms.Button btnConnectDevice;
         private System.Windows.Forms.Button btnConnectGame;
-        private System.Windows.Forms.RichTextBox tbLog;
         private System.Windows.Forms.Button btnDisconnectDevice;
         private System.Windows.Forms.Button btnDisconnectGame;
         private System.Windows.Forms.RadioButton rdoImperial;
         private System.Windows.Forms.RadioButton rdoMetric;
         private System.Windows.Forms.Label lblStyle;
         private System.Windows.Forms.ComboBox cmbStyle;
+        private System.Windows.Forms.ListBox lbLog;
     }
 }
 

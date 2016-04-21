@@ -6,7 +6,12 @@ namespace TM1638Dash
 {
     public partial class MainForm : Form
     {
+        #region Constants
+
         public const LEDStyle DEFAULT_LED_STYLE = LEDStyle.Left;
+        public const int MAX_LOG_LENGTH = 1000;
+
+        #endregion
 
         #region Private Members
 
@@ -39,6 +44,21 @@ namespace TM1638Dash
         }
 
         #endregion
+
+        #region Exposed Methods
+
+        public void WriteLog(string line)
+        {
+            if (lbLog.Items.Count == 1000)
+            {
+                lbLog.Items.RemoveAt(0);
+            }
+            lbLog.Items.Add(line);
+        }
+
+        #endregion
+
+        #region Event Handlers
 
         #region Form Events
 
@@ -103,6 +123,60 @@ namespace TM1638Dash
             _game.Stop();
             btnDisconnectGame.Visible = false;
             rdoImperial.Enabled = rdoMetric.Enabled = cmbStyle.Enabled = btnConnectGame.Visible = true;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Nested Type: MainFormLogger
+
+
+        #endregion
+    }
+
+    public class MainFormLogger : ILog
+    {
+        #region Private Members
+
+        private readonly MainForm _form;
+
+        #endregion
+
+        #region Constructors
+
+        public MainFormLogger(MainForm form)
+        {
+            _form = form;
+        }
+
+        #endregion
+
+        #region Exposed Methods
+
+        public void Fatal(object message)
+        {
+            _form.WriteLog(message.ToString());
+        }
+
+        public void Error(object message)
+        {
+            _form.WriteLog(message.ToString());
+        }
+
+        public void Warn(object message)
+        {
+            _form.WriteLog(message.ToString());
+        }
+
+        public void Info(object message)
+        {
+            _form.WriteLog(message.ToString());
+        }
+
+        public void Debug(object message)
+        {
+            _form.WriteLog(message.ToString());
         }
 
         #endregion

@@ -11,9 +11,13 @@ namespace TM1638Dash
         [STAThread]
         static void Main()
         {
-            var container = IocHelper.GetContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            var container = IocHelper.GetContainer(e => {
+                e.For<MainForm>().Use<MainForm>().Singleton();
+                e.For<ILog>().Use<MainFormLogger>();
+            });
             Application.Run(container.GetInstance<MainForm>());
         }
     }
