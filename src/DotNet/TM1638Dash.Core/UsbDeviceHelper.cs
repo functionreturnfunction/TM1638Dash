@@ -26,7 +26,7 @@ namespace TM1638Dash
 
         public struct DeviceMessages
         {
-            public const string READY = "0000ready   ";
+            public const string READY = "0000ready   waiting for game...                                                             ";
         }
 
         public struct ExceptionMessages
@@ -61,9 +61,10 @@ namespace TM1638Dash
 
         #region Private Methods
 
-        private string BuildCommandString(LEDStyle style, int maxRpms, int rpms, int gear, int speed)
+        private string BuildCommandString(AssettoCorsaHelper.CurrentStats stats)
         {
-            return DetermineLights(style, maxRpms, rpms) + "00" + FixGear(gear) + FixSpeed(speed);
+            return DetermineLights(stats.Style, stats.MaxRPM, stats.RPM) + "00" + FixGear(stats.Gear) +
+                   FixSpeed(stats.Speed);
         }
 
         private static string FixGear(int gear)
@@ -140,14 +141,14 @@ namespace TM1638Dash
             _device = null;
         }
 
-        public void DisplayStats(LEDStyle style, int maxRpms, int rpms, int gear, int speed)
+        public void DisplayStats(AssettoCorsaHelper.CurrentStats stats)
         {
             if (!Started)
             {
                 throw new InvalidOperationException(ExceptionMessages.NOT_YET_STARTED);
             }
 
-            _device.SendString(BuildCommandString(style, maxRpms, rpms, gear, speed));
+            _device.SendString(BuildCommandString(stats));
         }
 
         #endregion
@@ -165,7 +166,7 @@ namespace TM1638Dash
 
         void Start(string portName);
         void Stop();
-        void DisplayStats(LEDStyle style, int maxRpms, int rpms, int gear, int speed);
+        void DisplayStats(AssettoCorsaHelper.CurrentStats stats);
 
         #endregion
     }

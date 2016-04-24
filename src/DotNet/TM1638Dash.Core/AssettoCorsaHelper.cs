@@ -9,9 +9,9 @@ namespace TM1638Dash
 
         private readonly AssettoCorsa _game;
         private readonly IUsbDeviceHelper _device;
-        private int _currentMaxRpm;
         private bool _imperial;
-        private LEDStyle _style;
+
+        private CurrentStats _stats;
 
         #endregion
 
@@ -25,28 +25,49 @@ namespace TM1638Dash
 
         public AssettoCorsaHelper(AssettoCorsa game, IUsbDeviceHelper device)
         {
+            _stats = new CurrentStats();
             _game = game;
             _device = device;
             _game.PhysicsUpdated += OnPhysicsUpdated;
             _game.StaticInfoUpdated += OnStaticInfoUpdated;
+            _game.GraphicsUpdated += OnGraphicsUpdated;
         }
 
         #endregion
+
+        private void DisplayStats()
+        {
+            if (_device.Started)
+            {
+                _device.DisplayStats(_stats);
+            }
+        }
 
         #region Event Handlers
 
         private void OnStaticInfoUpdated(object sender, StaticInfoEventArgs e)
         {
-            _currentMaxRpm = e.StaticInfo.MaxRpm;
+            _stats.MaxRPM = e.StaticInfo.MaxRpm;
         }
 
         private void OnPhysicsUpdated(object sender, PhysicsEventArgs e)
         {
-            if (_device.Started)
-            {
-                _device.DisplayStats(_style, _currentMaxRpm, e.Physics.Rpms, e.Physics.Gear,
-                    (int)Math.Round(_imperial ? e.Physics.SpeedKmh*0.621371192 : e.Physics.SpeedKmh));
-            }
+                _stats.RPM = e.Physics.Rpms;
+                _stats.Gear = e.Physics.Gear;
+                _stats.Speed = (int)Math.Round(_imperial ? e.Physics.SpeedKmh*0.621371192 : e.Physics.SpeedKmh);
+                DisplayStats();
+        }
+
+        private void OnGraphicsUpdated(object sender, GraphicsEventArgs e)
+        {
+            _stats.CompletedLaps = e.Graphics.CompletedLaps;
+            _stats.Position = e.Graphics.Position;
+            _stats.CurrentTime = e.Graphics.CurrentTime;
+            _stats.LastTime = e.Graphics.LastTime;
+            _stats.BestTime = e.Graphics.BestTime;
+            _stats.Split = e.Graphics.Split;
+            _stats.NumberOfLaps = e.Graphics.NumberOfLaps;
+            DisplayStats();
         }
 
         #endregion
@@ -72,13 +93,29 @@ namespace TM1638Dash
             }
 
             _imperial = imperial;
-            _style = style;
+            _stats.Style = style;
 
             _game.Start();
             Started = true;
         }
 
         #endregion
+
+        public class CurrentStats
+        {
+            public LEDStyle Style { get; set; }
+            public int MaxRPM { get; set; }
+            public int RPM { get; set; }
+            public int Gear { get; set; }
+            public int Speed { get; set; }
+            public int CompletedLaps { get; set; }
+            public int Position { get; set; }
+            public string CurrentTime { get; set; }
+            public string LastTime { get; set; }
+            public string BestTime { get; set; }
+            public string Split { get; set; }
+            public int NumberOfLaps { get; set; }
+        }
     }
 
     public interface IAssettoCorsaHelper

@@ -67,7 +67,13 @@ namespace TM1638Dash.Tests
         {
             _device.Setup(x => x.SendString(expected));
 
-            _target.DisplayStats(style, maxRpms, rpms, gear, kmh);
+            _target.DisplayStats(new AssettoCorsaHelper.CurrentStats {
+                Style = style,
+                MaxRPM = maxRpms,
+                RPM = rpms,
+                Gear = gear,
+                Speed = kmh
+            });
 
         }
 
@@ -132,7 +138,7 @@ namespace TM1638Dash.Tests
 
             try
             {
-                _target.DisplayStats(LEDStyle.Left, 1, 0, 0, 0);
+                _target.DisplayStats(new AssettoCorsaHelper.CurrentStats { Style = LEDStyle.Left, MaxRPM = 1, RPM = 0, Gear = 0, Speed = 0 });
             }
             catch (InvalidOperationException e) when (e.Message == UsbDeviceHelper.ExceptionMessages.NOT_YET_STARTED)
             {

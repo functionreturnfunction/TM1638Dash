@@ -7,7 +7,8 @@ namespace TM1638Dash
     {
         #region Constants
 
-        public const int BAUD = 19200;
+        public const int BAUD = 19200,
+            TX_LENGTH = 92;
 
         #endregion
 
@@ -40,10 +41,10 @@ namespace TM1638Dash
 
         public void SendString(string value)
         {
-            if (value.Length != 12)
+            if (value.Length != TX_LENGTH)
             {
                 throw new ArgumentException(
-                    $"Cannot send string '{value}' because it's {(value.Length < 12 ? "less" : "greater")} than the expected message size.");
+                    $"Cannot send string '{value}' because it's {(value.Length < TX_LENGTH ? "less" : "greater")} than the expected message size.");
             }
 
             _log.Info($"Writing command string '{value}'");
